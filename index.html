@@ -14,7 +14,7 @@
   --bg:#040810;--surface:#080f1e;--card:#0c1628;--card2:#101e35;
   --border:rgba(0,200,255,0.1);--border2:rgba(0,200,255,0.25);
   --text:#d0e4f7;--muted:#4a6a8a;--dim:#1e3050;
-  --cyan:#00c8ff;--green:#00ff9d;--red:#ff3b5c;--yellow:#ffd000;--purple:#9b6dff;
+  --cyan:#00c8ff;--green:#00ff9d;--red:#ff3b5c;--yellow:#ffd000;--purple:#9b6dff;--text2:#8aafc8;
   --cyan-glow:rgba(0,200,255,0.15);--green-glow:rgba(0,255,157,0.12);
   --red-glow:rgba(255,59,92,0.12);--yellow-glow:rgba(255,208,0,0.1);
 }
@@ -26,7 +26,7 @@ body.light{
   --bg:#f0f4f8;--surface:#e2e8f0;--card:#ffffff;--card2:#f7fafc;
   --border:rgba(0,120,180,0.2);--border2:rgba(0,120,180,0.4);
   --text:#1a2a3a;--muted:#5a7a9a;--dim:#c8daea;
-  --cyan:#0096c7;--green:#007a4d;--red:#c0392b;--yellow:#a07800;--purple:#6b3fa0;
+  --cyan:#0096c7;--green:#007a4d;--red:#c0392b;--yellow:#a07800;--purple:#6b3fa0;--text2:#3a6a8a;
   --cyan-glow:rgba(0,150,200,0.1);--green-glow:rgba(0,122,77,0.1);
   --red-glow:rgba(192,57,43,0.1);--yellow-glow:rgba(160,120,0,0.08);
 }
@@ -81,8 +81,9 @@ body.light .tt-thumb{left:14px;background:#fff}
 
 /* ═══ SCREENS ═══ */
 .screen{display:none;min-height:calc(100vh - 60px)}
-#pbqScreen.active{min-height:0;height:auto}
+#pbqScreen.active{min-height:0!important;height:auto!important}
 .screen.active{display:block}
+#pbqScreen.active{display:flex!important;flex-direction:column}
 
 /* ═══ DASHBOARD ═══ */
 #dashScreen{padding:3rem 2rem}
@@ -201,7 +202,7 @@ body.light .tt-thumb{left:14px;background:#fff}
 .pbq-cli-prompt{color:var(--green)}
 .pbq-cli-input{background:transparent;border:none;outline:none;color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:0.82rem;width:80%;caret-color:var(--cyan)}
 /* Back button */
-.pbq-back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-weight:500;padding:6px 12px;border-radius:7px;border:1px solid var(--border);cursor:pointer;background:none;font-family:'Exo 2',sans-serif;transition:all 0.2s;margin-bottom:1.5rem}
+.pbq-back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--cyan);text-decoration:none;font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:5px;border:1px solid var(--border2);cursor:pointer;background:rgba(0,200,255,0.06);font-family:'Share Tech Mono',monospace;transition:all 0.2s;letter-spacing:0.08em;margin:0;white-space:nowrap;flex-shrink:0}
 .pbq-back-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .exam-card.locked{opacity:0.5;cursor:not-allowed}
 .exam-card.unlocked{border-color:rgba(155,109,255,0.4);cursor:pointer;transition:all 0.25s}
