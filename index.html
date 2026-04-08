@@ -133,42 +133,86 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
 #pbqScreen.active{display:flex;flex-direction:column}
 
 /* ═══ DASHBOARD ═══ */
-#dashScreen{padding:2rem 2.5rem}
-.dash-inner{max-width:1100px;margin:0 auto}
-.dash-hero{text-align:center;margin-bottom:4rem}
-.dash-hero .eyebrow{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--cyan);margin-bottom:1rem;text-transform:uppercase}
-.dash-hero h1{font-family:'Rajdhani',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1;letter-spacing:0.05em;margin-bottom:1rem}
-.dash-hero h1 span{color:var(--cyan);text-shadow:0 0 30px rgba(0,200,255,0.4)}
-.dash-hero p{font-size:1rem;color:var(--muted);max-width:550px;margin:0 auto}
-.pass-requirement{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.2rem;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--yellow);background:rgba(255,208,0,0.07);border:1px solid rgba(255,208,0,0.2);padding:0.4rem 1rem;border-radius:4px}
+/* ═══ DASHBOARD ═══ */
+#dashScreen{padding:0;overflow-y:auto}
+.dash-wrap{max-width:1000px;margin:0 auto;padding:2rem 2.5rem 4rem}
 
-/* TOPIC CARDS */
-.topics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-bottom:2rem}
-.topic-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden}
-.topic-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,200,255,0.03),transparent);pointer-events:none}
-.topic-card:hover:not(.locked){transform:translateY(-3px);border-color:var(--border2);box-shadow:0 8px 40px rgba(0,200,255,0.1)}
-.topic-card.locked{cursor:not-allowed;opacity:0.55}
-.topic-card.locked:hover{transform:none}
-.topic-card.completed{border-color:rgba(0,255,157,0.3)}
-.topic-card.completed::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
-.topic-card.active-topic{border-color:rgba(0,200,255,0.4)}
-.topic-card.active-topic::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
-.tc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
-.tc-obj{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;padding:0.3rem 0.7rem;border-radius:4px;border:1px solid}
-.tc-obj.c1{color:var(--cyan);border-color:rgba(0,200,255,0.3);background:rgba(0,200,255,0.07)}
-.tc-obj.c2{color:var(--purple);border-color:rgba(155,109,255,0.3);background:rgba(155,109,255,0.07)}
-.tc-obj.c3{color:var(--red);border-color:rgba(255,59,92,0.3);background:rgba(255,59,92,0.07)}
-.tc-obj.c4{color:var(--yellow);border-color:rgba(255,208,0,0.3);background:rgba(255,208,0,0.07)}
-.tc-obj.c5{color:var(--green);border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.07)}
-.tc-status{font-size:1.2rem}
-.topic-card h3{font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:0.05em;margin-bottom:0.4rem}
-.topic-card p{font-size:0.82rem;color:var(--muted);line-height:1.5;margin-bottom:1rem}
-.tc-footer{display:flex;justify-content:space-between;align-items:center}
-.tc-qs{font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--muted)}
-.tc-score{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600}
-.tc-score.pass{color:var(--green)} .tc-score.fail{color:var(--red)} .tc-score.none{color:var(--muted)}
-.tc-bar{height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:0.8rem;overflow:hidden}
-.tc-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease}
+/* Welcome */
+.dash-welcome{display:flex;align-items:center;justify-content:space-between;gap:2rem;margin-bottom:2rem;flex-wrap:wrap}
+.dash-welcome-text{flex:1;min-width:280px}
+.dash-eyebrow{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.25em;color:var(--cyan);margin-bottom:0.6rem}
+.dash-title{font-family:'Rajdhani',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.15;margin-bottom:0.7rem;color:var(--text)}
+.dash-title span{color:var(--cyan)}
+.dash-subtitle{color:var(--muted);font-size:0.9rem;line-height:1.6;margin-bottom:1rem;max-width:480px}
+.dash-badges{display:flex;gap:0.5rem;flex-wrap:wrap}
+.dash-badge{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;padding:0.3rem 0.8rem;border-radius:20px;border:1px solid}
+.dash-badge.cyan{color:var(--cyan);border-color:rgba(0,200,255,0.3);background:rgba(0,200,255,0.07)}
+.dash-badge.green{color:var(--green);border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.07)}
+.dash-badge.purple{color:var(--purple);border-color:rgba(155,109,255,0.3);background:rgba(155,109,255,0.07)}
+
+/* Overall ring */
+.dash-overall-ring{position:relative;flex-shrink:0}
+.ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-pct{font-family:'Rajdhani',sans-serif;font-size:1.6rem;font-weight:700;color:var(--cyan);line-height:1}
+.ring-sub{font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--muted);letter-spacing:0.15em;margin-top:2px}
+
+/* Stats */
+.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
+.dash-stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-align:center}
+.dash-stat-num{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:var(--cyan);line-height:1;margin-bottom:0.3rem}
+.dash-stat-lbl{font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.1em}
+
+/* Section title */
+.dash-section-title{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--cyan);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)}
+
+/* Domain bars */
+.dash-domains{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:2rem}
+.domain-bar-row{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem}
+.domain-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem}
+.domain-bar-name{font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:600;color:var(--text)}
+.domain-bar-meta{font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--muted)}
+.domain-bar-track{height:8px;background:var(--dim);border-radius:4px;overflow:hidden}
+.domain-bar-fill{height:100%;border-radius:4px;transition:width 0.8s ease}
+.domain-bar-topics{display:flex;gap:0.4rem;margin-top:0.6rem;flex-wrap:wrap}
+.domain-topic-dot{font-family:'Share Tech Mono',monospace;font-size:0.55rem;padding:0.15rem 0.5rem;border-radius:3px;border:1px solid}
+
+/* Charts */
+.dash-charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:0.6rem}
+.chart-card-title{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;color:var(--muted);text-align:center}
+.chart-svg-wrap{position:relative;width:100px;height:100px}
+.chart-svg-wrap svg{width:100%;height:100%}
+.chart-center-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.chart-pct{font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;line-height:1}
+.chart-done{font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--muted);margin-top:1px}
+
+/* Contact */
+.dash-contact{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;margin-bottom:2rem}
+.contact-photo-wrap{display:flex;flex-direction:column;align-items:center;gap:0.6rem;flex-shrink:0}
+.contact-photo{width:90px;height:90px;border-radius:50%;border:3px solid var(--cyan);overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(0,200,255,0.2),rgba(155,109,255,0.2))}
+.contact-photo-inner{font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700;color:var(--cyan)}
+.contact-name{font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text);text-align:center}
+.contact-role{font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.08em;text-align:center}
+.contact-details{flex:1;min-width:240px}
+.contact-bio{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+.contact-links{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem}
+.contact-link{display:flex;align-items:center;gap:0.6rem;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:0.06em;padding:0.6rem 1rem;border-radius:6px;border:1px solid var(--border);text-decoration:none;transition:all 0.2s;cursor:pointer}
+.contact-link-email{color:var(--cyan);border-color:rgba(0,200,255,0.25);background:rgba(0,200,255,0.04)}
+.contact-link-email:hover{background:rgba(0,200,255,0.1);border-color:var(--cyan)}
+.contact-link-wa{color:var(--green);border-color:rgba(0,255,157,0.25);background:rgba(0,255,157,0.04)}
+.contact-link-wa:hover{background:rgba(0,255,157,0.1);border-color:var(--green)}
+.contact-link-call{color:var(--yellow);border-color:rgba(255,208,0,0.25);background:rgba(255,208,0,0.04)}
+.contact-link-call:hover{background:rgba(255,208,0,0.1);border-color:var(--yellow)}
+.contact-note{font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.06em}
+
+@media(max-width:640px){
+  .dash-stats{grid-template-columns:1fr 1fr}
+  .dash-welcome{flex-direction:column-reverse;align-items:flex-start}
+  .dash-wrap{padding:1.5rem}
+}
+/* old hero css removed */
+
+/* topic-cards css removed — now in sidebar */
 
 /* ═══ PBQ SCREEN ═══ */
 #pbqScreen{padding:0;display:flex;flex-direction:column}
@@ -251,21 +295,7 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
 /* Back button */
 .pbq-back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--cyan);text-decoration:none;font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:5px;border:1px solid var(--border2);cursor:pointer;background:rgba(0,200,255,0.06);font-family:'Share Tech Mono',monospace;transition:all 0.2s;letter-spacing:0.08em;margin:0;white-space:nowrap;flex-shrink:0}
 .pbq-back-btn:hover{border-color:var(--cyan);color:var(--cyan)}
-.exam-card.locked{opacity:0.5;cursor:not-allowed}
-.exam-card.unlocked{border-color:rgba(155,109,255,0.4);cursor:pointer;transition:all 0.25s}
-.exam-card.unlocked:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(155,109,255,0.15)}
-.exam-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(155,109,255,0.05),transparent);pointer-events:none}
-.exam-card-inner{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
-.exam-icon{font-size:3rem;flex-shrink:0}
-.exam-info{flex:1}
-.exam-info h3{font-family:'Rajdhani',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:0.05em;margin-bottom:0.3rem;color:var(--purple)}
-.exam-info p{font-size:0.88rem;color:var(--muted);line-height:1.5}
-.exam-meta{display:flex;gap:1.5rem;margin-top:0.8rem;flex-wrap:wrap}
-.exam-meta-item{font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:0.4rem}
-.exam-meta-item span{color:var(--text)}
-.btn-start-exam{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.08em;padding:0.9rem 2.5rem;background:var(--purple);color:#040810;border:none;border-radius:8px;cursor:pointer;transition:all 0.2s;flex-shrink:0}
-.btn-start-exam:hover{box-shadow:0 6px 25px rgba(155,109,255,0.35);transform:translateY(-2px)}
-.btn-start-exam:disabled{opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none}
+/* exam-card css moved to sidebar */
 
 /* ═══ QUIZ SCREEN ═══ */
 #quizScreen{padding:0}
@@ -446,14 +476,90 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
 
   <!-- ═══ DASHBOARD / WELCOME ═══ -->
   <div id="dashScreen" class="screen active">
-    <div class="dash-inner">
-      <div class="dash-hero">
-        <div class="eyebrow">// CompTIA Security+ SY0-701</div>
-        <h1>Welcome back,<br><span id="heroName">Student</span></h1>
-        <p>Select a topic from the sidebar to begin. Score 80%+ to unlock the next objective. Complete all 18 topics to unlock the Final Exam.</p>
-        <div class="pass-requirement">⚡ 80% PASS MARK · 18 TOPICS · 5 DOMAINS</div>
+    <div class="dash-wrap">
+
+      <!-- ── WELCOME ROW ── -->
+      <div class="dash-welcome">
+        <div class="dash-welcome-text">
+          <div class="dash-eyebrow">// CompTIA Security+ SY0-701</div>
+          <h1 class="dash-title">Welcome back, <span id="heroName">Student</span> 👋</h1>
+          <p class="dash-subtitle">Track your progress below. Select any topic from the sidebar to start practising. Score 80%+ to unlock the next objective.</p>
+          <div class="dash-badges">
+            <span class="dash-badge cyan">⚡ 80% PASS MARK</span>
+            <span class="dash-badge green">📚 18 TOPICS</span>
+            <span class="dash-badge purple">🗂 5 DOMAINS</span>
+          </div>
+        </div>
+        <div class="dash-overall-ring">
+          <svg viewBox="0 0 120 120" width="120" height="120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border)" stroke-width="10"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--cyan)" stroke-width="10"
+              stroke-dasharray="314" stroke-dashoffset="314"
+              id="overallRingFill" stroke-linecap="round"
+              transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 1s ease"/>
+          </svg>
+          <div class="ring-label">
+            <div class="ring-pct" id="overallPct">0%</div>
+            <div class="ring-sub">OVERALL</div>
+          </div>
+        </div>
       </div>
-      <div class="topics-grid" id="topicsGrid"></div>
+
+      <!-- ── STATS ROW ── -->
+      <div class="dash-stats">
+        <div class="dash-stat">
+          <div class="dash-stat-num" id="statPassed">0</div>
+          <div class="dash-stat-lbl">Topics Passed</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-num" id="statTotal">18</div>
+          <div class="dash-stat-lbl">Total Topics</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-num" id="statAvg">—</div>
+          <div class="dash-stat-lbl">Avg Score</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-num" id="statPbq" style="color:var(--green)">25</div>
+          <div class="dash-stat-lbl">PBQs Available</div>
+        </div>
+      </div>
+
+      <!-- ── DOMAIN PROGRESS ── -->
+      <div class="dash-section-title">// Domain Progress</div>
+      <div class="dash-domains" id="dashDomains"></div>
+
+      <!-- ── PIE CHARTS ROW ── -->
+      <div class="dash-section-title">// Score Breakdown by Domain</div>
+      <div class="dash-charts" id="dashCharts"></div>
+
+      <!-- ── CONTACT DEVELOPER ── -->
+      <div class="dash-section-title">// Developer Contact</div>
+      <div class="dash-contact">
+        <div class="contact-photo-wrap">
+          <div class="contact-photo">
+            <div class="contact-photo-inner">AND</div>
+          </div>
+          <div class="contact-name">Andiswa Alicia Ngcongo</div>
+          <div class="contact-role">App Developer · Cyber Security Analyst</div>
+        </div>
+        <div class="contact-details">
+          <p class="contact-bio">Built this Security+ prep platform as part of my cybersecurity learning journey at MiDO Academy. For bug reports, feature requests, or general feedback — reach out anytime!</p>
+          <div class="contact-links">
+            <a class="contact-link contact-link-email" href="mailto:andiswangcongo18@gmail.com">
+              ✉ &nbsp;andiswangcongo18@gmail.com
+            </a>
+            <a class="contact-link contact-link-wa" href="https://wa.me/27683762626" target="_blank">
+              💬 &nbsp;WhatsApp: +27 68 376 2626
+            </a>
+            <a class="contact-link contact-link-call" href="tel:+27683762626">
+              📞 &nbsp;Call: +27 68 376 2626
+            </a>
+          </div>
+          <div class="contact-note">🐛 Found a bug? 💡 Have an idea? I'd love to hear from you!</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1962,33 +2068,134 @@ function loadState(){try{const d=localStorage.getItem('sp_state_v2');if(d){const
 function renderDashboard(){
   loadState();
   renderSidebar();
-  // Also refresh the dashboard topic grid (mini overview)
-  const grid=document.getElementById('topicsGrid');
-  if(!grid) return;
-  grid.innerHTML='';
-  let topicIdx=0;
-  DOMAINS.forEach(domain=>{
-    const dh=document.createElement('div');
-    dh.className='domain-header';
-    dh.style.cssText=`grid-column:1/-1;display:flex;align-items:center;gap:1rem;margin:1rem 0 0.3rem;padding:0.7rem 1.2rem;background:rgba(255,255,255,0.03);border-left:3px solid ${domain.color};border-radius:4px`;
-    dh.innerHTML=`<div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:${domain.color}">DOMAIN ${domain.num}</div><div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text)">${domain.label}</div><div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--muted);margin-left:auto">${domain.pct} OF EXAM</div>`;
-    grid.appendChild(dh);
-    domain.topics.forEach(t=>{
-      const globalIdx=topicIdx++;
-      const p=STATE.progress[t.id];
-      const prevId=globalIdx===0?null:TOPICS[globalIdx-1].id;
-      const locked=globalIdx>0&&!STATE.progress[prevId].passed;
-      const pct=p.score!==null?Math.round(p.score*100):null;
-      const card=document.createElement('div');
-      card.className=`topic-card ${locked?'locked':''} ${p.passed?'completed':''}`;
-      if(!locked&&!p.passed) card.className+=' active-topic';
-      card.onclick=()=>{if(!locked)startTopic(t.id)};
-      const barColor=p.score===null?'transparent':p.passed?'var(--green)':'var(--red)';
-      const barW=p.score===null?0:Math.round(p.score*100);
-      card.innerHTML=`<div class="tc-header"><div class="tc-obj ${t.color}">OBJ ${t.obj}</div><div class="tc-status">${locked?'🔒':p.passed?'✅':p.score!==null?'❌':'▶️'}</div></div><h3>${t.label}</h3><p>${t.desc}</p><div class="tc-footer"><div class="tc-qs">25 QUESTIONS · ${t.timeMin} MIN</div><div class="tc-score ${p.score===null?'none':p.passed?'pass':'fail'}">${pct!==null?pct+'%':locked?'LOCKED':'START'}</div></div><div class="tc-bar"><div class="tc-bar-fill" style="width:${barW}%;background:${barColor}"></div></div>`;
-      grid.appendChild(card);
+  renderDashboardContent();
+}
+
+function renderDashboardContent(){
+  // ── Stats ──
+  const passed=TOPICS.filter(t=>STATE.progress[t.id].passed).length;
+  const scored=TOPICS.filter(t=>STATE.progress[t.id].score!==null);
+  const avg=scored.length?Math.round(scored.reduce((s,t)=>s+STATE.progress[t.id].score,0)/scored.length*100):null;
+  const el=id=>document.getElementById(id);
+  if(el('statPassed')) el('statPassed').textContent=passed;
+  if(el('statAvg')) el('statAvg').textContent=avg!==null?avg+'%':'—';
+
+  // Overall ring
+  const pctOverall=Math.round((passed/TOPICS.length)*100);
+  if(el('overallPct')) el('overallPct').textContent=pctOverall+'%';
+  const ring=document.getElementById('overallRingFill');
+  if(ring) setTimeout(()=>{ring.style.strokeDashoffset=314-(314*pctOverall/100);},100);
+
+  // Domain colours
+  const domainColors={'1.0':'#00c8ff','2.0':'#ff6b6b','3.0':'#60a5fa','4.0':'#ffd000','5.0':'#00ff9d'};
+
+  // ── Domain bars ──
+  const domEl=document.getElementById('dashDomains');
+  if(domEl){
+    domEl.innerHTML='';
+    DOMAINS.forEach(domain=>{
+      const total=domain.topics.length;
+      const domPassed=domain.topics.filter(t=>STATE.progress[t.id].passed).length;
+      const domScored=domain.topics.filter(t=>STATE.progress[t.id].score!==null);
+      const domAvg=domScored.length?Math.round(domScored.reduce((s,t)=>s+STATE.progress[t.id].score,0)/domScored.length*100):null;
+      const fillW=Math.round((domPassed/total)*100);
+      const color=domainColors[domain.num]||'#00c8ff';
+      const topicDots=domain.topics.map(t=>{
+        const p=STATE.progress[t.id];
+        const dotColor=p.passed?'rgba(0,255,157,0.3)':p.score!==null?'rgba(255,59,92,0.3)':'var(--border)';
+        const dotText=p.passed?'var(--green)':p.score!==null?'var(--red)':'var(--muted)';
+        const icon=p.passed?'✓':p.score!==null?'✗':'○';
+        return `<span class="domain-topic-dot" style="color:${dotText};border-color:${dotColor};background:${dotColor.replace('0.3','0.08')}">${icon} ${t.obj}</span>`;
+      }).join('');
+      const row=document.createElement('div');
+      row.className='domain-bar-row';
+      row.innerHTML=`
+        <div class="domain-bar-top">
+          <div class="domain-bar-name" style="color:${color}">Domain ${domain.num} — ${domain.label}</div>
+          <div class="domain-bar-meta">${domPassed}/${total} passed ${domAvg!==null?'· avg '+domAvg+'%':''}</div>
+        </div>
+        <div class="domain-bar-track"><div class="domain-bar-fill" style="width:0%;background:${color}" data-w="${fillW}"></div></div>
+        <div class="domain-bar-topics">${topicDots}</div>`;
+      domEl.appendChild(row);
     });
-  });
+    // Animate bars after paint
+    setTimeout(()=>{
+      domEl.querySelectorAll('.domain-bar-fill').forEach(b=>{b.style.width=b.dataset.w+'%'});
+    },150);
+  }
+
+  // ── Pie / donut charts per domain ──
+  const chartsEl=document.getElementById('dashCharts');
+  if(chartsEl){
+    chartsEl.innerHTML='';
+    const allDomains=[...DOMAINS,{id:'pbq',num:'PBQ',label:'Perf.-Based Qs',topics:[]}];
+    DOMAINS.forEach(domain=>{
+      const total=domain.topics.length;
+      const domPassed=domain.topics.filter(t=>STATE.progress[t.id].passed).length;
+      const domFailed=domain.topics.filter(t=>!STATE.progress[t.id].passed&&STATE.progress[t.id].score!==null).length;
+      const domUntouched=total-domPassed-domFailed;
+      const color=domainColors[domain.num]||'#00c8ff';
+      const pct=Math.round((domPassed/total)*100);
+      // SVG donut: r=38, circumference=238.76
+      const C=238.76;
+      const passArc=C*(domPassed/total);
+      const failArc=C*(domFailed/total);
+      const untouchArc=C*(domUntouched/total);
+      const card=document.createElement('div');
+      card.className='chart-card';
+      card.innerHTML=`
+        <div class="chart-svg-wrap">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="38" fill="none" stroke="var(--dim)" stroke-width="12"/>
+            <circle cx="50" cy="50" r="38" fill="none" stroke="${color}" stroke-width="12"
+              stroke-dasharray="${passArc} ${C-passArc}" stroke-dashoffset="${C*0.25}"
+              stroke-linecap="butt" transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,59,92,0.6)" stroke-width="12"
+              stroke-dasharray="${failArc} ${C-failArc}" stroke-dashoffset="${C*0.25-passArc}"
+              transform="rotate(-90 50 50)"/>
+          </svg>
+          <div class="chart-center-label">
+            <div class="chart-pct" style="color:${color}">${pct}%</div>
+            <div class="chart-done">${domPassed}/${total}</div>
+          </div>
+        </div>
+        <div class="chart-card-title">DOMAIN ${domain.num}</div>
+        <div style="display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:center">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:${color}">✓ ${domPassed} passed</span>
+          ${domFailed?`<span style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--red)">✗ ${domFailed} failed</span>`:''}
+          ${domUntouched?`<span style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--muted)">○ ${domUntouched} not started</span>`:''}
+        </div>`;
+      chartsEl.appendChild(card);
+    });
+
+    // PBQ chart (always available, show as special)
+    const pbqCard=document.createElement('div');
+    pbqCard.className='chart-card';
+    const pbqC=238.76;
+    pbqCard.innerHTML=`
+      <div class="chart-svg-wrap">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--dim)" stroke-width="12"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--green)" stroke-width="12"
+            stroke-dasharray="${pbqC} 0" stroke-dashoffset="${pbqC*0.25}"
+            transform="rotate(-90 50 50)"/>
+        </svg>
+        <div class="chart-center-label">
+          <div class="chart-pct" style="color:var(--green)">25</div>
+          <div class="chart-done">PBQs</div>
+        </div>
+      </div>
+      <div class="chart-card-title">PERF.-BASED Qs</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.5rem;color:var(--green);text-align:center">✅ Always Available</div>`;
+    chartsEl.appendChild(pbqCard);
+  }
+
+  // Update name
+  const sess=SP_SESSION.get();
+  if(sess&&sess.name){
+    const heroName=document.getElementById('heroName');
+    if(heroName) heroName.textContent=sess.name.split(' ')[0];
+  }
 }
 
 function renderSidebar(){
