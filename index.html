@@ -32,7 +32,7 @@ body.light{
 }
 body.light .cyber-bg{opacity:0.25}
 body.light .header{background:rgba(240,244,248,0.96)!important;border-bottom-color:rgba(0,120,180,0.2)!important}
-body.light .pbq-topbar{background:rgba(240,244,248,0.98)!important}
+body.light .pbq-topbar{background:rgba(240,244,248,0.96)!important;border-bottom-color:rgba(0,120,180,0.2)!important}
 body.light .quiz-topbar{background:rgba(240,244,248,0.98)!important}
 body.light .pbq-cli-box{background:#1a2a3a}
 body.light .logo-icon{color:#f0f4f8!important}
@@ -81,6 +81,7 @@ body.light .tt-thumb{left:14px;background:#fff}
 
 /* ═══ SCREENS ═══ */
 .screen{display:none;min-height:calc(100vh - 60px)}
+#pbqScreen.active{min-height:0;height:auto}
 .screen.active{display:block}
 
 /* ═══ DASHBOARD ═══ */
@@ -122,10 +123,10 @@ body.light .tt-thumb{left:14px;background:#fff}
 .tc-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease}
 
 /* ═══ PBQ SCREEN ═══ */
-#pbqScreen{padding:0}
-.pbq-inner{max-width:980px;margin:0 auto;padding:1.5rem 2rem}
-.pbq-topbar{background:rgba(4,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;position:sticky;top:60px;z-index:90;margin-bottom:1.5rem}
-.pbq-topbar-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:0.8rem;height:50px;flex-wrap:wrap}
+#pbqScreen{padding:0;display:flex;flex-direction:column}
+.pbq-inner{max-width:980px;width:100%;margin:0 auto;padding:1.2rem 2rem 4rem}
+.pbq-topbar{background:rgba(4,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;position:sticky;top:60px;z-index:90;flex-shrink:0}
+.pbq-topbar-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:0.8rem;height:50px;flex-wrap:nowrap;overflow-x:auto}
 .pbq-domain-btn{font-family:'Share Tech Mono',monospace;font-size:0.6rem;font-weight:600;letter-spacing:0.1em;border:1px solid var(--border);background:none;color:var(--muted);padding:0.3rem 0.8rem;border-radius:4px;cursor:pointer;transition:all 0.2s;text-transform:uppercase}
 .pbq-domain-btn:hover,.pbq-domain-btn.active{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-glow)}
 .pbq-score-bar{margin-left:auto;display:flex;align-items:center;gap:1rem;font-family:'Share Tech Mono',monospace;font-size:0.62rem}
@@ -476,26 +477,26 @@ body.light .tt-thumb{left:14px;background:#fff}
 
 <!-- ═══ PBQ SCREEN ═══ -->
 <div id="pbqScreen" class="screen">
-  <div class="pbq-inner">
-    <!-- STICKY DOMAIN NAV + SCORE -->
-    <div class="pbq-topbar">
-      <div class="pbq-topbar-inner">
-        <button class="pbq-back-btn" onclick="showScreen('dashScreen')" style="margin:0;padding:0.2rem 0.7rem;font-size:0.62rem;border-radius:5px;flex-shrink:0">← BACK</button>
-        <div style="width:1px;height:20px;background:var(--border);flex-shrink:0"></div>
-        <button class="pbq-domain-btn active" onclick="pbqShowDomain('pbq-d1',event)">Domain 1</button>
-        <button class="pbq-domain-btn" onclick="pbqShowDomain('pbq-d2',event)">Domain 2</button>
-        <button class="pbq-domain-btn" onclick="pbqShowDomain('pbq-d3',event)">Domain 3</button>
-        <button class="pbq-domain-btn" onclick="pbqShowDomain('pbq-d4',event)">Domain 4</button>
-        <button class="pbq-domain-btn" onclick="pbqShowDomain('pbq-d5',event)">Domain 5</button>
-        <div class="pbq-score-bar">
-          <div class="pbq-score-dot" style="background:var(--green);width:8px;height:8px;border-radius:50%"></div>
-          <span>Correct: <span id="pbq-correct">0</span></span>
-          <div class="pbq-score-dot" style="background:var(--red);width:8px;height:8px;border-radius:50%"></div>
-          <span>Wrong: <span id="pbq-wrong">0</span></span>
-          <span style="color:var(--cyan);font-weight:700">Score: <span id="pbq-score">0%</span></span>
-        </div>
+  <!-- STICKY NAV BAR — outside pbq-inner so sticky works from edge -->
+  <div class="pbq-topbar">
+    <div class="pbq-topbar-inner">
+      <button class="pbq-back-btn" onclick="showScreen('dashScreen')" style="margin:0;padding:0.25rem 0.8rem;font-size:0.62rem;border-radius:5px;flex-shrink:0;letter-spacing:0.08em">← BACK</button>
+      <div style="width:1px;height:22px;background:var(--border2);flex-shrink:0"></div>
+      <button class="pbq-domain-btn active" onclick="pbqShowDomain('pbq-d1',event)">Domain 1</button>
+      <button class="pbq-domain-btn" onclick="pbqShowDomain('pbq-d2',event)">Domain 2</button>
+      <button class="pbq-domain-btn" onclick="pbqShowDomain('pbq-d3',event)">Domain 3</button>
+      <button class="pbq-domain-btn" onclick="pbqShowDomain('pbq-d4',event)">Domain 4</button>
+      <button class="pbq-domain-btn" onclick="pbqShowDomain('pbq-d5',event)">Domain 5</button>
+      <div class="pbq-score-bar">
+        <div class="pbq-score-dot" style="background:var(--green);width:8px;height:8px;border-radius:50%"></div>
+        <span>Correct: <span id="pbq-correct">0</span></span>
+        <div class="pbq-score-dot" style="background:var(--red);width:8px;height:8px;border-radius:50%"></div>
+        <span>Wrong: <span id="pbq-wrong">0</span></span>
+        <span style="color:var(--cyan);font-weight:700">Score: <span id="pbq-score">0%</span></span>
       </div>
     </div>
+  </div>
+  <div class="pbq-inner">
 
     <!-- DOMAIN 1 -->
     <div class="pbq-domain-section visible" id="pbq-d1">
