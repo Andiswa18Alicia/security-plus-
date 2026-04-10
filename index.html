@@ -584,8 +584,8 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
         <div class="contact-details">
           <p class="contact-bio">Built this Security+ prep platform as part of my cybersecurity learning journey at MiDO Academy. For bug reports, feature requests, or general feedback — reach out anytime!</p>
           <div class="contact-links">
-            <a class="contact-link contact-link-email" href="mailto:andiswangcongo18@gmail.com">
-              ✉ &nbsp;andiswangcongo18@gmail.com
+            <a class="contact-link contact-link-email" href="/cdn-cgi/l/email-protection#c5a4aba1acb6b2a4aba2a6aaaba2aaf4fd85a2a8a4aca9eba6aaa8">
+              ✉ &nbsp;<span class="__cf_email__" data-cfemail="dcbdb2b8b5afabbdb2bbbfb3b2bbb3ede49cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</span>
             </a>
             <a class="contact-link contact-link-wa" href="https://wa.me/27683762626" target="_blank">
               💬 &nbsp;WhatsApp: +27 68 376 2626
@@ -663,7 +663,6 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
       </div>
     </div>
   </div>
-</div>
 
 <!-- ═══ PBQ SCREEN ═══ -->
 <div id="pbqScreen" class="screen">
@@ -1186,7 +1185,9 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
   </div>
 </div>
 
-<script>
+</div><!-- /.main -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── PBQ ENGINE ─────────────────────────────────────────────────
 let pbqCorrect = 0, pbqWrong = 0, pbqTotal = 0;
 const pbqAnswered = new Set();
@@ -2127,9 +2128,6 @@ const STATE = {
   timer:null,secondsLeft:0,timeUsed:0,userAnswers:[]
 };
 
-function saveState(){try{localStorage.setItem('sp_state_v2',JSON.stringify(STATE.progress))}catch(e){}}
-function loadState(){try{const d=localStorage.getItem('sp_state_v2');if(d){const p=JSON.parse(d);Object.keys(p).forEach(k=>{if(STATE.progress[k])STATE.progress[k]=p[k]});}}catch(e){}}
-
 function renderDashboard(){
   loadState();
   renderSidebar();
@@ -2802,14 +2800,4 @@ function toggleTheme() {
       document.body.classList.add('light');
       // icons update after DOM loads
       document.addEventListener('DOMContentLoaded', () => {
-        const icon = document.getElementById('themeIcon');
-        const lbl  = document.getElementById('themeLabel');
-        if (icon) icon.textContent = '🌙';
-        if (lbl)  lbl.textContent  = 'DARK';
-      });
-    }
-  } catch(e) {}
-})();
-</script>
-</body>
-</html>
+        const ic
