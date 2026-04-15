@@ -123,6 +123,41 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
 .sidebar-btn-theme:hover{border-color:var(--cyan);color:var(--cyan)}
 .sidebar-btn-signout{color:var(--muted);border-color:rgba(255,59,92,0.2);background:rgba(255,59,92,0.04)}
 .sidebar-btn-signout:hover{color:var(--red);border-color:var(--red);background:rgba(255,59,92,0.08)}
+.sidebar-btn-acronym{color:var(--yellow);border-color:rgba(255,208,0,0.25);background:rgba(255,208,0,0.04)}
+.sidebar-btn-acronym:hover{background:rgba(255,208,0,0.1);border-color:var(--yellow)}
+
+/* ═══ ACRONYM SCREEN ═══ */
+#acronymScreen{padding:0;overflow-y:auto}
+.acronym-wrap{max-width:1000px;margin:0 auto;padding:2rem 2.5rem 4rem}
+.acronym-header{margin-bottom:2rem}
+.acronym-header h2{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:var(--text);margin-bottom:0.4rem}
+.acronym-header h2 span{color:var(--cyan)}
+.acronym-header p{font-size:0.85rem;color:var(--muted);line-height:1.5}
+.acronym-controls{display:flex;gap:0.8rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center}
+.acronym-search{flex:1;min-width:200px;padding:0.6rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Exo 2',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s}
+.acronym-search:focus{border-color:var(--cyan)}
+.acronym-search::placeholder{color:var(--muted)}
+.acronym-filter-wrap{display:flex;gap:0.4rem;flex-wrap:wrap}
+.acronym-filter{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;padding:0.35rem 0.8rem;border-radius:4px;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;transition:all 0.15s}
+.acronym-filter:hover,.acronym-filter.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,200,255,0.08)}
+.acronym-count{font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;margin-left:auto;white-space:nowrap}
+.acronym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.8rem}
+.acronym-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.2rem;transition:border-color 0.2s;cursor:default}
+.acronym-card:hover{border-color:var(--border2)}
+.acronym-abbr{font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:0.05em;margin-bottom:0.2rem}
+.acronym-full{font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:0.5rem;line-height:1.3}
+.acronym-desc{font-size:0.75rem;color:var(--muted);line-height:1.55}
+.acronym-tag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:0.5rem;letter-spacing:0.08em;padding:0.15rem 0.5rem;border-radius:3px;border:1px solid;margin-top:0.6rem}
+.tag-crypto{color:var(--cyan);border-color:rgba(0,200,255,0.3);background:rgba(0,200,255,0.07)}
+.tag-network{color:#60a5fa;border-color:rgba(96,165,250,0.3);background:rgba(96,165,250,0.07)}
+.tag-attack{color:var(--red);border-color:rgba(255,59,92,0.3);background:rgba(255,59,92,0.07)}
+.tag-governance{color:var(--purple);border-color:rgba(155,109,255,0.3);background:rgba(155,109,255,0.07)}
+.tag-iam{color:var(--yellow);border-color:rgba(255,208,0,0.3);background:rgba(255,208,0,0.07)}
+.tag-threat{color:#f97316;border-color:rgba(249,115,22,0.3);background:rgba(249,115,22,0.07)}
+.tag-arch{color:var(--green);border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.07)}
+.tag-ops{color:#e879f9;border-color:rgba(232,121,249,0.3);background:rgba(232,121,249,0.07)}
+.acronym-none{text-align:center;padding:3rem;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.1em}
+@media(max-width:640px){.acronym-grid{grid-template-columns:1fr}.acronym-wrap{padding:1.5rem}}
 
 /* ── MAIN CONTENT AREA ── */
 .main{margin-left:260px;flex:1;min-height:100vh;display:flex;flex-direction:column}
@@ -215,7 +250,7 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
 /* topic-cards css removed — now in sidebar */
 
 /* ═══ PBQ SCREEN ═══ */
-#pbqScreen{padding:0}
+#pbqScreen{padding:0;display:flex;flex-direction:column}
 .pbq-inner{max-width:980px;width:100%;margin:0 auto;padding:1.2rem 2rem 4rem}
 .pbq-topbar{background:rgba(4,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:0;z-index:90;flex-shrink:0}
 .pbq-topbar-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:0.8rem;height:50px;flex-wrap:nowrap;overflow-x:auto}
@@ -458,6 +493,9 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
       <button class="sidebar-btn sidebar-btn-pbq" onclick="showScreen('pbqScreen')">
         🔬 &nbsp;Performance-Based Questions
       </button>
+      <button class="sidebar-btn sidebar-btn-acronym" onclick="showScreen('acronymScreen')">
+        📖 &nbsp;Acronyms Reference
+      </button>
       <button class="sidebar-btn sidebar-btn-exam" id="startExamBtn" onclick="startFinalExam()" disabled>
         🎓 &nbsp;<span id="examBtnLabel">FINAL EXAM — LOCKED 🔒</span>
       </button>
@@ -546,8 +584,8 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
         <div class="contact-details">
           <p class="contact-bio">Built this Security+ prep platform as part of my cybersecurity learning journey at MiDO Academy. For bug reports, feature requests, or general feedback — reach out anytime!</p>
           <div class="contact-links">
-            <a class="contact-link contact-link-email" href="/cdn-cgi/l/email-protection#4928272d203a3e28272e2a26272e267871092e24282025672a2624">
-              ✉ &nbsp;<span class="__cf_email__" data-cfemail="0d6c6369647e7a6c636a6e62636a623c354d6a606c6461236e6260">[email&#160;protected]</span>
+            <a class="contact-link contact-link-email" href="mailto:andiswangcongo18@gmail.com">
+              ✉ &nbsp;andiswangcongo18@gmail.com
             </a>
             <a class="contact-link contact-link-wa" href="https://wa.me/27683762626" target="_blank">
               💬 &nbsp;WhatsApp: +27 68 376 2626
@@ -627,7 +665,7 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
   </div>
 
   <!-- ═══ PBQ SCREEN ═══ -->
-<div id="pbqScreen" class="screen">
+  <div id="pbqScreen" class="screen">
   <div class="pbq-topbar">
     <div class="pbq-topbar-inner">
       <button class="pbq-domain-btn active" onclick="pbqShowDomain('pbq-d1',event)">Domain 1</button>
@@ -1118,10 +1156,39 @@ body.light .sidebar{background:rgba(240,244,248,0.99)}
       </div>
     </div>
   </div>
+</div>
+
+  <!-- ═══ ACRONYMS SCREEN ═══ -->
+  <div id="acronymScreen" class="screen">
+  <div class="acronym-wrap">
+    <div class="acronym-header">
+      <h2>// <span>Acronyms</span> Reference</h2>
+      <p>All key Security+ SY0-701 acronyms — full name and plain-English explanation. Use the search or filter by category.</p>
+    </div>
+    <div class="acronym-controls">
+      <input class="acronym-search" type="text" id="acronymSearch" placeholder="Search acronym or keyword..." oninput="filterAcronyms()">
+      <div class="acronym-filter-wrap" id="acronymFilters">
+        <button class="acronym-filter active" data-tag="all" onclick="setAcronymTag('all',this)">ALL</button>
+        <button class="acronym-filter" data-tag="crypto" onclick="setAcronymTag('crypto',this)">CRYPTO</button>
+        <button class="acronym-filter" data-tag="network" onclick="setAcronymTag('network',this)">NETWORK</button>
+        <button class="acronym-filter" data-tag="attack" onclick="setAcronymTag('attack',this)">ATTACKS</button>
+        <button class="acronym-filter" data-tag="iam" onclick="setAcronymTag('iam',this)">IAM</button>
+        <button class="acronym-filter" data-tag="governance" onclick="setAcronymTag('governance',this)">GOVERNANCE</button>
+        <button class="acronym-filter" data-tag="arch" onclick="setAcronymTag('arch',this)">ARCHITECTURE</button>
+        <button class="acronym-filter" data-tag="threat" onclick="setAcronymTag('threat',this)">THREATS</button>
+        <button class="acronym-filter" data-tag="ops" onclick="setAcronymTag('ops',this)">OPERATIONS</button>
+      </div>
+      <span class="acronym-count" id="acronymCount"></span>
+    </div>
+    <div class="acronym-grid" id="acronymGrid"></div>
+    <div class="acronym-none" id="acronymNone" style="display:none">No acronyms match your search.</div>
+  </div>
+  </div>
+
   </div><!-- /.main -->
 </div><!-- /.app -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ── PBQ ENGINE ─────────────────────────────────────────────────
 let pbqCorrect = 0, pbqWrong = 0, pbqTotal = 0;
 const pbqAnswered = new Set();
@@ -2459,19 +2526,19 @@ function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+  if(id==='acronymScreen') renderAcronyms();
+  if(id==='dashScreen'){renderDashboard();}
 }
 
 // ── INIT ──
 (async function init() {
   const sess = SP_SESSION.get();
   if (!sess || !sess.email) { window.location.href = 'secplus_login.html'; return; }
-
-  // Set user chip immediately — don't wait for Firebase
+  // Set name immediately — don't wait for Firebase
   const chip = document.getElementById('userChip');
   if (chip && sess.name) chip.textContent = sess.name.toUpperCase();
-  const heroName = document.getElementById('heroName');
-  if (heroName && sess.name) heroName.textContent = sess.name.split(' ')[0];
-
+  const heroEl = document.getElementById('heroName');
+  if (heroEl && sess.name) heroEl.textContent = sess.name.split(' ')[0];
   initSecplusFirebase();
   loadState();
   renderDashboard();
@@ -2493,6 +2560,239 @@ async function loadStateFromFirebase() {
   const p = await loadProgress(sess.email);
   if (p) { Object.keys(p).forEach(k=>{if(STATE.progress[k])STATE.progress[k]=p[k];}); try{localStorage.setItem('sp_state_v2',JSON.stringify(STATE.progress));}catch(e){} }
 }
+// ══════════════════════════════════════════════════════
+// ACRONYMS DATABASE — Security+ SY0-701
+// ══════════════════════════════════════════════════════
+const ACRONYMS = [
+  // ── CRYPTOGRAPHY ──
+  {a:'AES',f:'Advanced Encryption Standard',d:'Symmetric block cipher using 128/192/256-bit keys. The current NIST standard for bulk data encryption — replaces DES.',tag:'crypto'},
+  {a:'RSA',f:'Rivest–Shamir–Adleman',d:'Asymmetric encryption algorithm. Uses a public/private key pair. Commonly used for key exchange and digital signatures.',tag:'crypto'},
+  {a:'ECC',f:'Elliptic Curve Cryptography',d:'Asymmetric algorithm providing equivalent security to RSA with much shorter key lengths. Used in mobile and IoT devices.',tag:'crypto'},
+  {a:'DES',f:'Data Encryption Standard',d:'Deprecated symmetric cipher with a 56-bit key — considered broken. Replaced by 3DES then AES.',tag:'crypto'},
+  {a:'3DES',f:'Triple Data Encryption Standard',d:'Applies DES three times with different keys. Deprecated — slower and weaker than AES.',tag:'crypto'},
+  {a:'SHA',f:'Secure Hash Algorithm',d:'Family of one-way hash functions. SHA-256 (256-bit output) is the current standard; SHA-1 is deprecated.',tag:'crypto'},
+  {a:'MD5',f:'Message Digest 5',d:'Produces a 128-bit hash. Considered broken due to collision vulnerabilities — do not use for security.',tag:'crypto'},
+  {a:'PKI',f:'Public Key Infrastructure',d:'Framework of policies, roles, and procedures for creating, managing, distributing, and revoking digital certificates.',tag:'crypto'},
+  {a:'CA',f:'Certificate Authority',d:'Trusted entity that issues and signs digital certificates, verifying the identity of certificate holders.',tag:'crypto'},
+  {a:'CRL',f:'Certificate Revocation List',d:'Published list of certificates revoked by a CA before their expiry date.',tag:'crypto'},
+  {a:'OCSP',f:'Online Certificate Status Protocol',d:'Real-time protocol for checking whether a specific certificate has been revoked — more current than CRL.',tag:'crypto'},
+  {a:'CSR',f:'Certificate Signing Request',d:'Message sent to a CA containing the applicant's public key and identity information, requesting a signed certificate.',tag:'crypto'},
+  {a:'TPM',f:'Trusted Platform Module',d:'Dedicated security chip embedded in a motherboard that stores cryptographic keys and verifies boot integrity.',tag:'crypto'},
+  {a:'HSM',f:'Hardware Security Module',d:'Tamper-resistant hardware device for enterprise-scale cryptographic key generation, storage, and management.',tag:'crypto'},
+  {a:'PFS',f:'Perfect Forward Secrecy',d:'Ensures that session keys cannot be compromised even if the server's private key is later exposed. Achieved via ephemeral key exchange.',tag:'crypto'},
+  {a:'TLS',f:'Transport Layer Security',d:'Cryptographic protocol providing authentication, confidentiality, and integrity for data in transit. Successor to SSL.',tag:'crypto'},
+  {a:'SSL',f:'Secure Sockets Layer',d:'Predecessor to TLS. Deprecated and should not be used — all versions have known vulnerabilities.',tag:'crypto'},
+  {a:'PBKDF2',f:'Password-Based Key Derivation Function 2',d:'Key stretching algorithm that applies a hash function thousands of times to slow brute-force attacks on passwords.',tag:'crypto'},
+  {a:'HMAC',f:'Hash-based Message Authentication Code',d:'Uses a cryptographic hash plus a secret key to verify both data integrity and message authenticity.',tag:'crypto'},
+  {a:'IV',f:'Initialization Vector',d:'Random value used with encryption algorithms to ensure identical plaintexts produce different ciphertexts.',tag:'crypto'},
+  {a:'XOR',f:'Exclusive OR',d:'Bitwise operation fundamental to many encryption algorithms — combining plaintext with a key stream.',tag:'crypto'},
+  {a:'KEK',f:'Key Encryption Key',d:'A key used to encrypt other keys, protecting them during storage or transmission.',tag:'crypto'},
+
+  // ── NETWORK ──
+  {a:'VPN',f:'Virtual Private Network',d:'Encrypted tunnel over an untrusted network (e.g., internet) connecting remote users or sites securely.',tag:'network'},
+  {a:'DMZ',f:'Demilitarized Zone',d:'Network buffer zone between the internet and internal network where public-facing servers are placed.',tag:'network'},
+  {a:'NAT',f:'Network Address Translation',d:'Maps private IP addresses to a public IP, hiding internal network structure and conserving public IPs.',tag:'network'},
+  {a:'VLAN',f:'Virtual Local Area Network',d:'Logical segmentation of a physical network into isolated broadcast domains — key tool for network segmentation.',tag:'network'},
+  {a:'ACL',f:'Access Control List',d:'Rules defining which traffic or users are permitted or denied access to a network resource or system.',tag:'network'},
+  {a:'IDS',f:'Intrusion Detection System',d:'Monitors network/host activity and alerts on suspicious patterns — detective only, does not block.',tag:'network'},
+  {a:'IPS',f:'Intrusion Prevention System',d:'Like IDS but inline — actively blocks malicious traffic in real time. Preventive control.',tag:'network'},
+  {a:'WAF',f:'Web Application Firewall',d:'Layer 7 firewall that inspects HTTP/HTTPS traffic to protect against web app attacks like SQLi and XSS.',tag:'network'},
+  {a:'NGFW',f:'Next-Generation Firewall',d:'Combines traditional stateful firewall with application awareness, IPS, SSL inspection, and threat intelligence.',tag:'network'},
+  {a:'UTM',f:'Unified Threat Management',d:'Single appliance combining firewall, IPS, VPN, antivirus, and URL filtering — common in SMB environments.',tag:'network'},
+  {a:'SDN',f:'Software-Defined Networking',d:'Separates network control plane from data plane, enabling centralised programmatic security policy enforcement.',tag:'network'},
+  {a:'SD-WAN',f:'Software-Defined Wide Area Network',d:'WAN management using software-defined principles — encrypted overlays, centralised policy, dynamic routing.',tag:'network'},
+  {a:'SASE',f:'Secure Access Service Edge',d:'Cloud-delivered architecture combining SD-WAN with cloud security (ZTNA, CASB, SWG) for remote users.',tag:'network'},
+  {a:'ZTNA',f:'Zero Trust Network Access',d:'Grants access to specific applications only (not full network) based on identity and context — replaces VPN.',tag:'network'},
+  {a:'NAC',f:'Network Access Control',d:'Checks device health and identity before granting network access. Enforces security policies at the port level.',tag:'network'},
+  {a:'DNS',f:'Domain Name System',d:'Translates domain names to IP addresses. Common attack target — DNS poisoning, hijacking, and amplification.',tag:'network'},
+  {a:'DHCP',f:'Dynamic Host Configuration Protocol',d:'Automatically assigns IP addresses to devices on a network. DHCP snooping prevents rogue DHCP servers.',tag:'network'},
+  {a:'SNMP',f:'Simple Network Management Protocol',d:'Protocol for monitoring and managing network devices. v1/v2 are insecure — use SNMPv3 with authentication.',tag:'network'},
+  {a:'NTP',f:'Network Time Protocol',d:'Synchronises clocks across network devices. Critical for log correlation and certificate validity.',tag:'network'},
+  {a:'BGP',f:'Border Gateway Protocol',d:'Routing protocol used between autonomous systems on the internet. BGP hijacking is a major threat.',tag:'network'},
+  {a:'ICMP',f:'Internet Control Message Protocol',d:'Used for diagnostics (ping, traceroute). Can be abused for covert channels or DDoS amplification.',tag:'network'},
+  {a:'IPSec',f:'Internet Protocol Security',d:'Suite of protocols providing authentication and encryption at Layer 3. Foundation of many VPN implementations.',tag:'network'},
+  {a:'RADIUS',f:'Remote Authentication Dial-In User Service',d:'Centralised AAA protocol for network access — required for WPA2/3-Enterprise wireless authentication.',tag:'network'},
+  {a:'LDAP',f:'Lightweight Directory Access Protocol',d:'Protocol for querying directory services like Active Directory for authentication and user information.',tag:'network'},
+  {a:'FTPS',f:'File Transfer Protocol Secure',d:'FTP with TLS encryption. More secure than plain FTP. SFTP (SSH File Transfer Protocol) is preferred.',tag:'network'},
+  {a:'SSH',f:'Secure Shell',d:'Encrypted protocol for remote command-line access to systems. Replaces insecure Telnet.',tag:'network'},
+
+  // ── ATTACKS & THREATS ──
+  {a:'APT',f:'Advanced Persistent Threat',d:'Long-term, targeted attack by a sophisticated actor (usually nation-state) focused on espionage or disruption.',tag:'attack'},
+  {a:'DDoS',f:'Distributed Denial of Service',d:'Attack using many compromised systems to overwhelm a target with traffic, making it unavailable.',tag:'attack'},
+  {a:'DoS',f:'Denial of Service',d:'Attack that makes a system or service unavailable. DDoS uses multiple sources for greater scale.',tag:'attack'},
+  {a:'MitM',f:'Man-in-the-Middle',d:'Attacker intercepts communication between two parties, able to read or modify data in transit.',tag:'attack'},
+  {a:'XSS',f:'Cross-Site Scripting',d:'Injects malicious scripts into web pages viewed by other users — steals cookies, hijacks sessions.',tag:'attack'},
+  {a:'SQLi',f:'SQL Injection',d:'Inserts malicious SQL into input fields to manipulate the database — can dump, modify, or delete data.',tag:'attack'},
+  {a:'CSRF',f:'Cross-Site Request Forgery',d:'Tricks an authenticated user's browser into sending unwanted requests to a web app they are logged into.',tag:'attack'},
+  {a:'IDOR',f:'Insecure Direct Object Reference',d:'Web app exposes internal object IDs in URLs — attacker changes the ID to access other users' data.',tag:'attack'},
+  {a:'RCE',f:'Remote Code Execution',d:'Vulnerability allowing an attacker to run arbitrary code on a victim system from a remote location.',tag:'attack'},
+  {a:'LFI',f:'Local File Inclusion',d:'Web vulnerability allowing attackers to include files from the server's file system in responses.',tag:'attack'},
+  {a:'SSRF',f:'Server-Side Request Forgery',d:'Tricks the server into making requests to internal resources on behalf of the attacker.',tag:'attack'},
+  {a:'RAT',f:'Remote Access Trojan',d:'Malware that gives an attacker remote control over an infected system, often with keylogging and screen capture.',tag:'attack'},
+  {a:'C2',f:'Command and Control',d:'Infrastructure used by attackers to issue commands to compromised systems and receive stolen data.',tag:'attack'},
+  {a:'IoC',f:'Indicator of Compromise',d:'Forensic artifact suggesting a system has been breached — malicious IPs, file hashes, domain names.',tag:'attack'},
+  {a:'TTPs',f:'Tactics, Techniques, and Procedures',d:'Describes how threat actors operate — the what, how, and why of attack methods. Core of MITRE ATT&CK.',tag:'attack'},
+  {a:'CVE',f:'Common Vulnerabilities and Exposures',d:'Standardised identifier for publicly known security vulnerabilities (e.g., CVE-2021-44228 for Log4Shell).',tag:'attack'},
+  {a:'CVSS',f:'Common Vulnerability Scoring System',d:'Numerical score (0–10) rating vulnerability severity — used to prioritise patching efforts.',tag:'attack'},
+  {a:'NVD',f:'National Vulnerability Database',d:'US government repository of CVEs with CVSS scores and remediation guidance.',tag:'attack'},
+  {a:'BEC',f:'Business Email Compromise',d:'Attacker impersonates an executive or vendor via email to trick finance staff into wire transfers.',tag:'attack'},
+  {a:'PII',f:'Personally Identifiable Information',d:'Data that can identify a specific individual — name, SSN, email, biometrics. Subject to privacy regulations.',tag:'attack'},
+  {a:'PHI',f:'Protected Health Information',d:'Medical/health data protected under HIPAA. Includes diagnoses, treatment records, and patient identifiers.',tag:'attack'},
+
+  // ── IDENTITY & ACCESS MANAGEMENT ──
+  {a:'IAM',f:'Identity and Access Management',d:'Framework for managing digital identities and controlling what resources authenticated users can access.',tag:'iam'},
+  {a:'MFA',f:'Multi-Factor Authentication',d:'Authentication using two or more factor types: something you know, have, or are. Significantly reduces account compromise risk.',tag:'iam'},
+  {a:'SSO',f:'Single Sign-On',d:'Authenticate once to an Identity Provider and access multiple applications without re-authenticating.',tag:'iam'},
+  {a:'SAML',f:'Security Assertion Markup Language',d:'XML-based standard for exchanging authentication and authorisation data between an IdP and Service Provider.',tag:'iam'},
+  {a:'OAuth',f:'Open Authorisation',d:'Standard for delegated authorisation — allows apps to access resources on a user's behalf without sharing credentials.',tag:'iam'},
+  {a:'OIDC',f:'OpenID Connect',d:'Authentication layer built on OAuth 2.0 — adds identity (who you are) on top of OAuth's authorisation.',tag:'iam'},
+  {a:'PAM',f:'Privileged Access Management',d:'Tools and processes for securing, controlling, and auditing privileged account access.',tag:'iam'},
+  {a:'RBAC',f:'Role-Based Access Control',d:'Assigns permissions based on job role rather than individually. Simplifies access management at scale.',tag:'iam'},
+  {a:'ABAC',f:'Attribute-Based Access Control',d:'Makes access decisions based on user, resource, and environment attributes — more granular than RBAC.',tag:'iam'},
+  {a:'DAC',f:'Discretionary Access Control',d:'Resource owner sets permissions at their discretion. Flexible but inconsistent.',tag:'iam'},
+  {a:'MAC',f:'Mandatory Access Control',d:'System-enforced access based on security labels and clearance levels — users cannot change their own access.',tag:'iam'},
+  {a:'JIT',f:'Just-in-Time',d:'Privileged access granted only when needed for a specific task, for a limited time, then auto-revoked.',tag:'iam'},
+  {a:'IdP',f:'Identity Provider',d:'System that creates, maintains, and manages identity information and provides authentication services.',tag:'iam'},
+  {a:'SP',f:'Service Provider',d:'In SAML/SSO, the application that relies on the Identity Provider to authenticate users.',tag:'iam'},
+  {a:'SCIM',f:'System for Cross-domain Identity Management',d:'Standard protocol for automating user provisioning and de-provisioning between identity systems.',tag:'iam'},
+  {a:'TOTP',f:'Time-based One-Time Password',d:'MFA method generating a 6-digit code that changes every 30 seconds — used by apps like Google Authenticator.',tag:'iam'},
+  {a:'FIDO2',f:'Fast IDentity Online 2',d:'Passwordless authentication standard using public-key cryptography. Phishing-resistant — keys are bound to domains.',tag:'iam'},
+  {a:'PIV',f:'Personal Identity Verification',d:'US government smart card standard for strong authentication of federal employees and contractors.',tag:'iam'},
+
+  // ── GOVERNANCE & COMPLIANCE ──
+  {a:'GRC',f:'Governance, Risk, and Compliance',d:'Integrated approach to managing security governance, risk assessment, and regulatory compliance.',tag:'governance'},
+  {a:'GDPR',f:'General Data Protection Regulation',d:'EU regulation governing the collection and processing of personal data of EU citizens.',tag:'governance'},
+  {a:'HIPAA',f:'Health Insurance Portability and Accountability Act',d:'US law protecting the privacy and security of patient health information (PHI).',tag:'governance'},
+  {a:'PCI-DSS',f:'Payment Card Industry Data Security Standard',d:'Mandatory security standard for any organisation storing, processing, or transmitting payment card data.',tag:'governance'},
+  {a:'SOX',f:'Sarbanes-Oxley Act',d:'US law requiring financial controls and audit trails for publicly listed companies.',tag:'governance'},
+  {a:'NIST',f:'National Institute of Standards and Technology',d:'US agency that publishes widely-used security frameworks including SP 800-53 and the Cybersecurity Framework (CSF).',tag:'governance'},
+  {a:'ISO',f:'International Organisation for Standardisation',d:'ISO 27001 is the international standard for information security management systems (ISMS).',tag:'governance'},
+  {a:'AUP',f:'Acceptable Use Policy',d:'Defines acceptable and unacceptable use of organisational technology and data by employees.',tag:'governance'},
+  {a:'SLA',f:'Service Level Agreement',d:'Contract defining the expected level of service, uptime, and recovery times between a provider and customer.',tag:'governance'},
+  {a:'NDA',f:'Non-Disclosure Agreement',d:'Legal contract preventing parties from sharing confidential information with unauthorised third parties.',tag:'governance'},
+  {a:'BIA',f:'Business Impact Analysis',d:'Identifies critical business processes, their dependencies, and the financial impact if they are disrupted.',tag:'governance'},
+  {a:'BCP',f:'Business Continuity Plan',d:'Plan for maintaining essential business functions during and after a disruption — broader than DR.',tag:'governance'},
+  {a:'DRP',f:'Disaster Recovery Plan',d:'IT-focused plan for restoring systems and data after a disaster. Supports BCP with technical recovery.',tag:'governance'},
+  {a:'RTO',f:'Recovery Time Objective',d:'Maximum acceptable time to restore a system after an outage. Drives hot/warm/cold site decisions.',tag:'governance'},
+  {a:'RPO',f:'Recovery Point Objective',d:'Maximum acceptable data loss measured in time. Drives backup frequency and replication decisions.',tag:'governance'},
+  {a:'MTBF',f:'Mean Time Between Failures',d:'Average operational time between failures — a hardware reliability metric.',tag:'governance'},
+  {a:'MTTR',f:'Mean Time to Repair',d:'Average time to restore a system after failure. Lower MTTR = faster recovery.',tag:'governance'},
+  {a:'SLE',f:'Single Loss Expectancy',d:'Financial loss expected from one occurrence of a risk. SLE = Asset Value × Exposure Factor.',tag:'governance'},
+  {a:'ALE',f:'Annualized Loss Expectancy',d:'Expected annual loss from a risk. ALE = SLE × ARO. Used to justify security control investments.',tag:'governance'},
+  {a:'ARO',f:'Annualized Rate of Occurrence',d:'Estimated frequency of a risk event occurring per year. Used in quantitative risk calculations.',tag:'governance'},
+  {a:'EF',f:'Exposure Factor',d:'Percentage of asset value expected to be lost in a single incident. Used in SLE calculation.',tag:'governance'},
+
+  // ── SECURITY ARCHITECTURE ──
+  {a:'CIA',f:'Confidentiality, Integrity, Availability',d:'The three core security objectives. Every security control maps to protecting one or more of these.',tag:'arch'},
+  {a:'AAA',f:'Authentication, Authorisation, Accounting',d:'Framework: prove identity (AuthN), define permissions (AuthZ), record actions (Accounting).',tag:'arch'},
+  {a:'ZTNA',f:'Zero Trust Network Access',d:'Access model that grants access to specific apps only, never the full network — based on identity and context.',tag:'arch'},
+  {a:'IaC',f:'Infrastructure as Code',d:'Managing infrastructure via machine-readable config files. Security risk: one bad template can deploy thousands of vulnerable resources.',tag:'arch'},
+  {a:'SCADA',f:'Supervisory Control and Data Acquisition',d:'Industrial control system used in critical infrastructure — power, water, manufacturing. Often legacy, can't be patched.',tag:'arch'},
+  {a:'ICS',f:'Industrial Control System',d:'Broad term for systems controlling industrial processes. Includes SCADA and PLCs. High-consequence if compromised.',tag:'arch'},
+  {a:'OT',f:'Operational Technology',d:'Hardware and software that monitors and controls physical devices — contrasted with IT (information technology).',tag:'arch'},
+  {a:'IoT',f:'Internet of Things',d:'Network of physical devices with embedded sensors/software. Security risks: default creds, no patching, vast attack surface.',tag:'arch'},
+  {a:'RTOS',f:'Real-Time Operating System',d:'OS guaranteeing response within strict time constraints — used in medical devices, industrial controls.',tag:'arch'},
+  {a:'HSA',f:'High-Security Architecture',d:'Multi-layered security design using segmentation, least privilege, and defence-in-depth principles.',tag:'arch'},
+  {a:'HA',f:'High Availability',d:'Architecture using redundancy and failover to minimise downtime and protect the Availability CIA component.',tag:'arch'},
+  {a:'DR',f:'Disaster Recovery',d:'Strategies and procedures for restoring IT systems after a disaster. RTO and RPO are key metrics.',tag:'arch'},
+  {a:'CASB',f:'Cloud Access Security Broker',d:'Security tool that sits between cloud users and providers, enforcing security policies for cloud services.',tag:'arch'},
+  {a:'CSPM',f:'Cloud Security Posture Management',d:'Tool that continuously monitors cloud infrastructure configurations for misconfigurations and compliance violations.',tag:'arch'},
+  {a:'SaaS',f:'Software as a Service',d:'Cloud model where provider manages everything including the application — customer manages data and users only.',tag:'arch'},
+  {a:'PaaS',f:'Platform as a Service',d:'Cloud model where provider manages OS and runtime — customer manages application code.',tag:'arch'},
+  {a:'IaaS',f:'Infrastructure as a Service',d:'Cloud model where provider manages hardware and virtualisation — customer manages OS upwards.',tag:'arch'},
+  {a:'FaaS',f:'Function as a Service',d:'Serverless model where code executes in response to events — provider manages all infrastructure.',tag:'arch'},
+
+  // ── THREAT INTELLIGENCE ──
+  {a:'SIEM',f:'Security Information and Event Management',d:'Aggregates and correlates logs from across the environment for real-time threat detection and compliance reporting.',tag:'threat'},
+  {a:'SOAR',f:'Security Orchestration, Automation, and Response',d:'Platform that automates repetitive security tasks and coordinates incident response workflows.',tag:'threat'},
+  {a:'EDR',f:'Endpoint Detection and Response',d:'Monitors endpoint activity continuously, detects threats behaviourally, and enables rapid investigation and response.',tag:'threat'},
+  {a:'XDR',f:'Extended Detection and Response',d:'Expands EDR across endpoints, network, cloud, and identity into a unified detection and response platform.',tag:'threat'},
+  {a:'MDR',f:'Managed Detection and Response',d:'Outsourced security service providing 24/7 threat monitoring, detection, and response.',tag:'threat'},
+  {a:'TIP',f:'Threat Intelligence Platform',d:'System for collecting, analysing, and sharing threat intelligence (IOCs, TTPs) across teams.',tag:'threat'},
+  {a:'STIX',f:'Structured Threat Information Expression',d:'Standard language for representing cyber threat intelligence in a machine-readable format.',tag:'threat'},
+  {a:'TAXII',f:'Trusted Automated eXchange of Intelligence Information',d:'Transport protocol for sharing STIX threat intelligence between organisations.',tag:'threat'},
+  {a:'OSINT',f:'Open-Source Intelligence',d:'Intelligence gathered from publicly available sources — social media, websites, job postings, DNS records.',tag:'threat'},
+  {a:'ISAC',f:'Information Sharing and Analysis Center',d:'Sector-specific organisations facilitating sharing of threat intelligence between member organisations.',tag:'threat'},
+  {a:'IOC',f:'Indicator of Compromise',d:'Observable evidence of a breach — malicious file hash, C2 IP address, suspicious registry key.',tag:'threat'},
+  {a:'IOA',f:'Indicator of Attack',d:'Evidence of attacker behaviour in progress — more proactive than IOC which is post-compromise.',tag:'threat'},
+  {a:'TTP',f:'Tactic, Technique, and Procedure',d:'Describes how threat actors behave. Mapped in the MITRE ATT&CK framework.',tag:'threat'},
+
+  // ── SECURITY OPERATIONS ──
+  {a:'SOC',f:'Security Operations Centre',d:'Team responsible for monitoring, detecting, investigating, and responding to security incidents.',tag:'ops'},
+  {a:'NOC',f:'Network Operations Centre',d:'Team responsible for network monitoring, performance, and availability — distinct from SOC.',tag:'ops'},
+  {a:'IR',f:'Incident Response',d:'Structured approach to managing and recovering from security incidents. Phases: Prepare, Identify, Contain, Eradicate, Recover, Lessons Learned.',tag:'ops'},
+  {a:'DFIR',f:'Digital Forensics and Incident Response',d:'Combined discipline of forensic investigation and active incident response.',tag:'ops'},
+  {a:'FIM',f:'File Integrity Monitoring',d:'Detects unauthorised changes to critical files by comparing current state to a known-good baseline.',tag:'ops'},
+  {a:'DLP',f:'Data Loss Prevention',d:'Tools that detect and prevent unauthorised transmission of sensitive data outside the organisation.',tag:'ops'},
+  {a:'MDM',f:'Mobile Device Management',d:'Platform for managing mobile devices — enables remote wipe, encryption enforcement, and app management.',tag:'ops'},
+  {a:'MAM',f:'Mobile Application Management',d:'Manages specific apps on personal devices (BYOD) without controlling the entire device.',tag:'ops'},
+  {a:'BYOD',f:'Bring Your Own Device',d:'Policy allowing employees to use personal devices for work. Introduces security risks around data separation.',tag:'ops'},
+  {a:'COPE',f:'Corporate-Owned, Personally Enabled',d:'Organisation owns the device and allows personal use while maintaining full MDM control.',tag:'ops'},
+  {a:'UBA',f:'User Behaviour Analytics',d:'Analyses patterns of user activity to detect anomalies suggesting insider threats or compromised accounts.',tag:'ops'},
+  {a:'UEBA',f:'User and Entity Behaviour Analytics',d:'Extends UBA to include non-human entities like servers and applications.',tag:'ops'},
+  {a:'SAST',f:'Static Application Security Testing',d:'Analyses source code without execution to find security flaws early in development (shift-left security).',tag:'ops'},
+  {a:'DAST',f:'Dynamic Application Security Testing',d:'Tests the running application by sending inputs and observing behaviour — finds runtime vulnerabilities.',tag:'ops'},
+  {a:'VA',f:'Vulnerability Assessment',d:'Systematic review of security weaknesses in a system — does not exploit, only identifies.',tag:'ops'},
+  {a:'PT',f:'Penetration Testing',d:'Authorised simulated attack to identify and demonstrate exploitable vulnerabilities.',tag:'ops'},
+  {a:'CTI',f:'Cyber Threat Intelligence',d:'Actionable knowledge about current and emerging threats, used to improve defensive posture.',tag:'ops'},
+  {a:'SBOM',f:'Software Bill of Materials',d:'Inventory of all software components and dependencies in an application — used for vulnerability tracking.',tag:'ops'},
+  {a:'PAW',f:'Privileged Access Workstation',d:'Dedicated hardened device used exclusively for administrative tasks, never for email or browsing.',tag:'ops'},
+  {a:'VDI',f:'Virtual Desktop Infrastructure',d:'Hosts desktop environments on centralised servers — reduces endpoint risk and simplifies management.',tag:'ops'},
+];
+
+let currentAcronymTag = 'all';
+
+function renderAcronyms() {
+  const grid = document.getElementById('acronymGrid');
+  const search = (document.getElementById('acronymSearch')?.value || '').toLowerCase().trim();
+  if (!grid) return;
+  const filtered = ACRONYMS.filter(item => {
+    const tagMatch = currentAcronymTag === 'all' || item.tag === currentAcronymTag;
+    const textMatch = !search || item.a.toLowerCase().includes(search) ||
+      item.f.toLowerCase().includes(search) || item.d.toLowerCase().includes(search);
+    return tagMatch && textMatch;
+  });
+  // Sort alphabetically
+  filtered.sort((a, b) => a.a.localeCompare(b.a));
+  grid.innerHTML = '';
+  const tagColors = {
+    crypto:'tag-crypto', network:'tag-network', attack:'tag-attack',
+    iam:'tag-iam', governance:'tag-governance', arch:'tag-arch',
+    threat:'tag-threat', ops:'tag-ops'
+  };
+  const tagLabels = {
+    crypto:'CRYPTO', network:'NETWORK', attack:'ATTACKS',
+    iam:'IAM', governance:'GOVERNANCE', arch:'ARCHITECTURE',
+    threat:'THREATS', ops:'OPERATIONS'
+  };
+  filtered.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'acronym-card';
+    card.innerHTML = `
+      <div class="acronym-abbr" style="color:var(--cyan)">${item.a}</div>
+      <div class="acronym-full">${item.f}</div>
+      <div class="acronym-desc">${item.d}</div>
+      <span class="acronym-tag ${tagColors[item.tag]||''}">${tagLabels[item.tag]||item.tag}</span>`;
+    grid.appendChild(card);
+  });
+  const count = document.getElementById('acronymCount');
+  const none = document.getElementById('acronymNone');
+  if (count) count.textContent = `${filtered.length} of ${ACRONYMS.length} acronyms`;
+  if (none) none.style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+function filterAcronyms() { renderAcronyms(); }
+
+function setAcronymTag(tag, btn) {
+  currentAcronymTag = tag;
+  document.querySelectorAll('.acronym-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAcronyms();
+}
+
+// Auto-render when acronym screen is shown
+const _origShowScreen = typeof showScreen === 'function' ? showScreen : null;
+
 function doSignOut() { SP_SESSION.clear(); window.location.href = 'secplus_login.html'; }
 
 function toggleTheme() {
@@ -2509,4 +2809,14 @@ function toggleTheme() {
       document.body.classList.add('light');
       // icons update after DOM loads
       document.addEventListener('DOMContentLoaded', () => {
-        const ic
+        const icon = document.getElementById('themeIcon');
+        const lbl  = document.getElementById('themeLabel');
+        if (icon) icon.textContent = '🌙';
+        if (lbl)  lbl.textContent  = 'DARK';
+      });
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
