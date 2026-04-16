@@ -2134,6 +2134,14 @@ function loadState(){try{const d=localStorage.getItem('sp_state_v2');if(d){const
 
 function renderDashboard(){
   loadState();
+  // Set name immediately from session before any async ops
+  const _sess = SP_SESSION.get();
+  if(_sess && _sess.name){
+    const _chip = document.getElementById('userChip');
+    if(_chip) _chip.textContent = _sess.name.toUpperCase();
+    const _hero = document.getElementById('heroName');
+    if(_hero) _hero.textContent = _sess.name.split(' ')[0];
+  }
   renderSidebar();
   renderDashboardContent();
 }
@@ -2186,9 +2194,9 @@ function renderDashboardContent(){
       domEl.appendChild(row);
     });
     // Animate bars after paint
-    setTimeout(()=>{
+    requestAnimationFrame(()=>setTimeout(()=>{
       domEl.querySelectorAll('.domain-bar-fill').forEach(b=>{b.style.width=b.dataset.w+'%'});
-    },150);
+    },100));
   }
 
   // ── Pie / donut charts per domain ──
@@ -2534,16 +2542,27 @@ function showScreen(id){
 (async function init() {
   const sess = SP_SESSION.get();
   if (!sess || !sess.email) { window.location.href = 'secplus_login.html'; return; }
-  // Set name immediately — don't wait for Firebase
+  // Set name immediately from session
   const chip = document.getElementById('userChip');
   if (chip && sess.name) chip.textContent = sess.name.toUpperCase();
   const heroEl = document.getElementById('heroName');
   if (heroEl && sess.name) heroEl.textContent = sess.name.split(' ')[0];
+  // Apply saved theme before render
+  try {
+    const t = localStorage.getItem('sp_theme');
+    if (t === 'light') {
+      document.body.classList.add('light');
+      const icon = document.getElementById('themeIcon');
+      const lbl = document.getElementById('themeLabel');
+      if (icon) icon.textContent = '🌙';
+      if (lbl) lbl.textContent = 'DARK MODE';
+    }
+  } catch(e) {}
   initSecplusFirebase();
   loadState();
   renderDashboard();
-  await loadStateFromFirebase();
-  renderDashboard();
+  // Load Firebase progress in background, then re-render
+  loadStateFromFirebase().then(() => renderDashboard()).catch(() => {});
 })();
 
 function saveState() {
@@ -2797,26 +2816,14 @@ function doSignOut() { SP_SESSION.clear(); window.location.href = 'secplus_login
 
 function toggleTheme() {
   const isLight = document.body.classList.toggle('light');
-  document.getElementById('themeIcon').textContent = isLight ? '🌙' : '☀';
-  document.getElementById('themeLabel').textContent = isLight ? 'DARK' : 'LIGHT';
+  const icon = document.getElementById('themeIcon');
+  const lbl = document.getElementById('themeLabel');
+  if(icon) icon.textContent = isLight ? '🌙' : '☀';
+  if(lbl) lbl.textContent = isLight ? 'DARK MODE' : 'LIGHT MODE';
   try { localStorage.setItem('sp_theme', isLight ? 'light' : 'dark'); } catch(e) {}
 }
 
-(function applyTheme() {
-  try {
-    const t = localStorage.getItem('sp_theme');
-    if (t === 'light') {
-      document.body.classList.add('light');
-      // icons update after DOM loads
-      document.addEventListener('DOMContentLoaded', () => {
-        const icon = document.getElementById('themeIcon');
-        const lbl  = document.getElementById('themeLabel');
-        if (icon) icon.textContent = '🌙';
-        if (lbl)  lbl.textContent  = 'DARK';
-      });
-    }
-  } catch(e) {}
-})();
+// theme applied in init()
 </script>
 </body>
 </html>
