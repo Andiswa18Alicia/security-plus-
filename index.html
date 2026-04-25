@@ -1356,7 +1356,7 @@ function pbqResetDragMFA() {
   });
   const fb = document.getElementById('pbq-fb-' + qId);
   if (fb) { fb.className='pbq-feedback'; fb.innerHTML=''; }
-  document.getElementById(qId).classList.remove('answered-correct','answered-wrong');
+  document.getElementById(qId).claslist.remove('answered-correct','answered-wrong');
 }
 
 // Network zones drag check
@@ -2558,11 +2558,18 @@ function showScreen(id){
       if (lbl) lbl.textContent = 'DARK MODE';
     }
   } catch(e) {}
-  initSecplusFirebase();
+  // Retry Firebase initialisation if needed
+  let retries = 0;
+  const maxRetries = 5;
+  while (!initSecplusFirebase() && retries < maxRetries) {
+    await new Promise(r => setTimeout(r, 500));
+    retries++;
+  }
   loadState();
+  await loadStateFromFirebase().catch(() => {});
+  renderSidebar();
   renderDashboard();
-  // Load Firebase progress in background, then re-render
-  loadStateFromFirebase().then(() => renderDashboard()).catch(() => {});
+  showScreen('dashScreen');
 })();
 
 function saveState() {
